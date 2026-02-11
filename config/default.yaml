@@ -1,0 +1,76 @@
+# Default configuration for imitation learning
+
+# Algorithm configuration
+algorithm: behavioral_cloning
+
+# Model configuration
+model:
+  hidden_sizes: [256, 256]
+  activation: relu
+  dropout: 0.1
+
+# Training configuration
+training:
+  batch_size: 64
+  learning_rate: 0.001
+  weight_decay: 0.0
+  num_epochs: 100
+  loss: mse
+  validation_split: 0.2
+  early_stopping_patience: 10
+
+# DAgger specific configuration
+dagger:
+  beta: 0.5
+  iterations: 5
+
+# Environment configuration
+environment:
+  name: FetchReach-v1
+  max_episode_steps: 50
+  max_velocity: 1.0
+  max_force: 100.0
+
+# Data collection configuration
+data_collection:
+  expert_type: random  # random, scripted, loaded
+  expert_model_path: null
+  num_demonstrations: 100
+  success_threshold: 0.8
+  max_episode_steps: 50
+
+# Data preprocessing configuration
+preprocessing:
+  normalize_states: true
+  normalize_actions: true
+  filter_noise: false
+  noise_threshold: 0.1
+
+# Evaluation configuration
+evaluation:
+  num_episodes: 10
+  success_threshold: 0.8
+  trajectory_error_threshold: 0.1
+  compute_success_rate: true
+  compute_trajectory_error: true
+  compute_sample_efficiency: true
+  compute_generalization: true
+  compute_robustness: true
+
+# Visualization configuration
+visualization:
+  style: seaborn-v0_8
+  color_palette: husl
+  figsize: [10, 6]
+  dpi: 300
+
+# Logging configuration
+logging:
+  level: INFO
+  log_file: logs/imitation_learning.log
+
+# Device configuration
+device: auto  # auto, cuda, mps, cpu
+
+# Random seed
+seed: 42

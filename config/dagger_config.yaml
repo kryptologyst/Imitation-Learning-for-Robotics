@@ -1,0 +1,34 @@
+# DAgger configuration
+
+algorithm: dagger
+
+model:
+  hidden_sizes: [256, 256]
+  activation: relu
+  dropout: 0.1
+
+training:
+  batch_size: 64
+  learning_rate: 0.001
+  weight_decay: 0.0
+  num_epochs: 100
+  loss: mse
+  validation_split: 0.2
+  early_stopping_patience: 10
+
+dagger:
+  beta: 0.5
+  iterations: 5
+
+environment:
+  name: FetchReach-v1
+  max_episode_steps: 50
+
+data_collection:
+  expert_type: random
+  num_demonstrations: 50
+  success_threshold: 0.8
+
+evaluation:
+  num_episodes: 20
+  success_threshold: 0.8
